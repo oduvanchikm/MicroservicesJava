@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/JavaServiceDeduplication.main.iml" filepath="$PROJECT_DIR$/.idea/modules/JavaServiceDeduplication.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/JavaServiceDeduplication.test.iml" filepath="$PROJECT_DIR$/.idea/modules/JavaServiceDeduplication.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/JavaServiceEnrichment.main.iml" filepath="$PROJECT_DIR$/.idea/modules/JavaServiceEnrichment.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/JavaServiceEnrichment.test.iml" filepath="$PROJECT_DIR$/.idea/modules/JavaServiceEnrichment.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/JavaServiceFiltering.main.iml" filepath="$PROJECT_DIR$/.idea/modules/JavaServiceFiltering.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/JavaServiceFiltering.test.iml" filepath="$PROJECT_DIR$/.idea/modules/JavaServiceFiltering.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/JavaUnitTests.main.iml" filepath="$PROJECT_DIR$/.idea/modules/JavaUnitTests.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/JavaUnitTests.test.iml" filepath="$PROJECT_DIR$/.idea/modules/JavaUnitTests.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/MicroservicesJava.iml" filepath="$PROJECT_DIR$/.idea/MicroservicesJava.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,116 @@
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres-main
+    restart: always
+    environment:
+      POSTGRES_DB: java_bd
+      POSTGRES_USER: oduvanchik
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5444:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    container_name: zookeeper-main
+    restart: always
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - "2185:2181"
+
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    container_name: kafka-main
+    restart: always
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    ports:
+      - "9099:9092"
+
+  redis:
+    image: redis:latest
+    container_name: redis-main
+    restart: always
+    ports:
+      - "6383:6379"
+    command: [ "redis-server", "--appendonly", "yes" ]
+
+  mongo:
+    image: mongo:latest
+    container_name: mongo-main
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: oduvanchik
+      MONGO_INITDB_ROOT_PASSWORD: password
+    ports:
+      - "27020:27017"
+    volumes:
+      - mongo-data:/data/db
+
+
+  service-deduplication:
+    build:
+      context: ./JavaServiceDeduplication
+      dockerfile: Dockerfile
+    container_name: java-service-deduplication
+    restart: always
+    ports:
+      - "8084:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/java_bd
+      - SPRING_REDIS_HOST=redis
+      - KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+    depends_on:
+      - postgres
+      - redis
+      - kafka
+
+  service-filtering:
+    build:
+      context: ./JavaServiceFiltering
+      dockerfile: Dockerfile
+    container_name: java-service-filtering
+    restart: always
+    ports:
+      - "8085:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/java_bd
+      - KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+      - MONGODB_URI=mongodb://oduvanchik:password@mongo:27017/java_bd
+    depends_on:
+      - postgres
+      - kafka
+      - mongo
+
+  service-enrichment:
+    build:
+      context: ./JavaServiceEnrichment
+      dockerfile: Dockerfile
+    container_name: java-service-third
+    restart: always
+    ports:
+      - "8086:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/java_bd
+      - KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+    depends_on:
+      - postgres
+      - kafka
+
+volumes:
+  postgres-data:
+  mongo-data:
