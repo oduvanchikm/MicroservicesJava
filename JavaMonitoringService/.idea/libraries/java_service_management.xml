@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="java-service-management">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/java-service-management/jar/java-service-management.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="java-service-filtering">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/java-service-filtering/jar/java-service-filtering.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

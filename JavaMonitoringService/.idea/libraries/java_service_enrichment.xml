@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="java-service-enrichment">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/java-service-enrichment/jar/java-service-enrichment.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -3,6 +3,9 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/JavaMonitoringService" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/JavaServiceDeduplication" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/JavaServiceEnrichment" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/JavaServiceFiltering" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/JavaUnitTests" vcs="Git" />
   </component>
 </project>
